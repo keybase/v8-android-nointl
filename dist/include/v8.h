@@ -9207,7 +9207,7 @@ class V8_EXPORT Isolate {
    * sandbox, the host time zone has to be detected outside the sandbox before
    * calling DateTimeConfigurationChangeNotification function.
    */
-  enum class TimeZoneDetection { kSkip, kRedetect };
+  enum class TimeZoneDetection { kSkip, kRedetect, kCustom };
 
   /**
    * Notification that the embedder has changed the time zone, daylight savings
@@ -9220,7 +9220,8 @@ class V8_EXPORT Isolate {
    * the performance of date operations.
    */
   void DateTimeConfigurationChangeNotification(
-      TimeZoneDetection time_zone_detection = TimeZoneDetection::kSkip);
+      TimeZoneDetection time_zone_detection = TimeZoneDetection::kSkip,
+      const char* custom_timezone_id = nullptr);
 
   /**
    * Notification that the embedder has changed the locale. V8 keeps a cache of
